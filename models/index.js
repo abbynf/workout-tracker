@@ -6,21 +6,25 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const WorkoutChildSchema = new Schema({
+const WorkoutsChildSchema = new Schema({
     typeOfExercise: String,
     name: String,
-    duration: Number
+    duration: Number,
+    weight: Number,
+    reps: Number,
+    sets: Number,
+    distance: Number
 });
 
-const WorkoutSchema = new Schema({
-    dateCreated: {
+const WorkoutsSchema = new Schema({
+    day: {
         type: Date,
         default: Date.now
     },
     // MAY NOT WORK IN ARRAY
-    exercises: [WorkoutChildSchema]
+    exercises: [WorkoutsChildSchema]
 });
 
-const Workout = mongoose.model("Workout", WorkoutSchema);
+const Workouts = mongoose.model("Workouts", WorkoutsSchema);
 
-module.exports = Workout;
+module.exports = Workouts;
