@@ -24,13 +24,17 @@ mongoose.connect(
 );
 
 // message if mongoose connects or not
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
+const mongooseConnection = mongoose.connection;
+mongooseConnection.on('error', console.error.bind(console, 'connection error:'));
+mongooseConnection.once('open', function () {
   console.log("connected")
 });
 
+// Routes
+require("./routes/html-routes.js")(app);
+require("./routes/api-routes.js")(app);
+
 // Start express server
 app.listen(PORT, () => {
-    console.log(`App running on port ${PORT}!`);
-  });
+  console.log(`App running on port ${PORT}!`);
+});
