@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const WorkoutChildSchema = new Schema({
-    typeOfExercise: String,
+    type: String,
     name: String,
     duration: Number,
     weight: Number,
