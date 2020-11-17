@@ -3,12 +3,10 @@
 // DEPENDENCIES
 const Workouts = require("./../models");
 
-var entry;
-
 module.exports = function (app) {
 
     app.get("/api/workouts", function (req, res) {
-        console.log("api/workouts hit");
+        console.log("GET api/workouts hit");
         Workouts.find({})
             .then(dbWorkout => {
                 console.log(dbWorkout)
@@ -18,4 +16,18 @@ module.exports = function (app) {
                 res.json(err)
             })
     });
+
+    app.post("/api/workouts", function(req, res) {
+        console.log(req.body);
+        console.log("post api/workouts hit");
+
+        // create empty workout day
+        Workouts.create({})
+            .then(function(result) {
+                console.log(result);
+
+                // Send back the workout that was created
+                res.send(result);
+            })
+    })
 }
