@@ -22,8 +22,20 @@ const WorkoutSchema = new Schema({
         default: Date.now
     },
     // MAY NOT WORK IN ARRAY
-    exercises: [WorkoutChildSchema]
+    exercises: [WorkoutChildSchema],
+    totalDuration: {
+        type: Number,
+        default: 0
+    }
 });
+WorkoutSchema.methods.addAll = function() {
+    var totalMinutes = 0;
+    for (i = 0; i < this.exercises.length; i++) {
+        totalMinutes += this.exercises[i].duration;
+    }
+    return totalMinutes;
+}
+
 
 const Workout = mongoose.model("Workout", WorkoutSchema);
 
