@@ -1,6 +1,7 @@
 // These routes interact with the database
 
 // DEPENDENCIES
+const Workout = require("./../models");
 const Workouts = require("./../models");
 
 module.exports = function (app) {
@@ -17,17 +18,35 @@ module.exports = function (app) {
             })
     });
 
-    app.post("/api/workouts", function(req, res) {
+    app.post("/api/workouts", function (req, res) {
         console.log(req.body);
         console.log("post api/workouts hit");
 
         // create empty workout day
         Workouts.create({})
-            .then(function(result) {
+            .then(function (result) {
                 console.log(result);
 
                 // Send back the workout that was created
                 res.send(result);
             })
+    });
+
+    app.put("/api/workouts/:id", function (req, res) {
+        console.log("PUT /api/workouts hit");
+        id = req.params.id;
+        var addDuration = req.body.duration;
+        var currentDuration;
+        Workouts.findById(id).then(function (lastWorkout) {
+            currentDuration = lastWorkout.totalDuration;
+            var newDuration = currentDuration + addDuration;
+            lastWorkout.totalDuration = newDuration
+            lastWorkout.exercises.push(req.body);
+            return lastWorkout
+        }).then(function(pushedWorkout) {
+            pushedWorkout.save();
+            console.log("finished")
+            res.send(pushedWorkout);
+        })
     })
 }
