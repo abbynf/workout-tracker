@@ -48,5 +48,12 @@ module.exports = function (app) {
             console.log("finished")
             res.send(pushedWorkout);
         })
+    });
+
+    app.get("/api/workouts/range", function(req, res) {
+        Workouts.find({})
+            .then(function(allWorkouts) {
+                res.send(allWorkouts);
+            })
     })
 }
