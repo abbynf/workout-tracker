@@ -10,7 +10,8 @@
 - [Credits](#Credits)
 
 ## Description
-Users are able to create and track daily workouts. Users can log multiple exercises in a workout on a given day. If the user does resistance training, then they can track the name of the workout, type, weight, sets, reps, and duration of the workout. If the exercise is cardio, then the user can track the name, duration, and distance. 
+Tracking workouts improves the ability to meet fitness goals. Users are able to create and track daily workouts in this application. Users can log multiple exercises in a workout on a given day. If the user does resistance training, then they can track the name of the workout, type, weight, sets, reps, and duration of the workout. If the exercise is cardio, then the user can track the name, duration, and distance. 
+The deployed application is organized in two halves: adding a workout and viewing logged workouts. The code repository is organized in two halves as well. The frontend is in the 'public' folder while the backend occupies the rest of the repository. 
 
 ![Gif of working application](./public/assets/img/tracker_example.gif)
 
